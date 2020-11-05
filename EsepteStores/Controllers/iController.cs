@@ -51,7 +51,31 @@ namespace EsepteStores.Controllers
         [Route("/Order/{storeId}/{productId}")]
         public IActionResult Order(int? storeId, int? productId)
         {
+
+            ViewBag.Store = _context.Store.Find(storeId);
+            ViewBag.Product = _context.Product.Find(productId);
+
             return View();
+        }
+        
+        [HttpPost]
+        [Route("/Order")]
+        public IActionResult Order(int? productId, [Bind("Id,CustomerName,CustomerPhone,CustomerAddress,Created,IsDelivered")] Order order)
+        {
+            order.Created = DateTime.Now;
+            order.IsDelivered = false;
+
+
+            _context.Add(order);
+
+
+            _context.Add(new OrderPoruduct() { OrderId = order.Id, ProductId = productId.Value });
+
+
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Products", new { storeId = _context.Product.Find(productId).StoreId });
         }
 
         [Route("/Details/{productId}")]
