@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h3 class="text-center">Регистрация</h3>
+<hr />
+
+<div class="d-flex justify-content-center">
+
+    <form asp-action="Register" method="post" class="col-8">
+
+        <div class="form-group">
+            <label>Название магазина</label>
+            <input type="text" name="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Пароль</label>
+            <input type="password" name="Password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Контактный номер 1</label>
+            <input name="PhoneFirst" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Контактный номер 2</label>
+            <input name="PhoneSecond" class="form-control" />
+        </div>
+        @*<div class="form-group">
+            <label class="control-label">Логотип</label>
+            <input type="file" name="LogoFile" accept="image/*" />
+        </div>*@
+
+        <br />
+        <div>
+            <input type="submit" class="btn p-2 btn-primary" value="Регистрация" />
+            <a href="/Home/Login" class="btn p-2 btn-link">Войти</a>
+        </div>
+    </form>
+</div>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
