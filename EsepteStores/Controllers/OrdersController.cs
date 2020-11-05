@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EsepteStores.Data;
+using Microsoft.AspNetCore.Http;
 using EsepteStores.Models;
 
 namespace EsepteStores.Controllers
@@ -22,6 +23,13 @@ namespace EsepteStores.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
+            int? storeId = HttpContext.Session.GetInt32("StoreId");
+
+            if (storeId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(await _context.Order.ToListAsync());
         }
 

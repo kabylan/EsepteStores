@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using EsepteStores.Data;
 using EsepteStores.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System.IO;
 
 namespace EsepteStores.Controllers
@@ -31,7 +32,7 @@ namespace EsepteStores.Controllers
 
             if (storeId == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Home");
             }
 
             return View(_context.Store.Find(storeId));
