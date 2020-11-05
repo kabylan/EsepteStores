@@ -34,7 +34,9 @@ namespace EsepteStores.Controllers
                 .Include(p => p.Store)
                 .Include(p => p.ProductImages)
                 .ToList();
+
             
+            products.Reverse();
 
             
             ViewBag.Products = products;
@@ -60,10 +62,11 @@ namespace EsepteStores.Controllers
         
         [HttpPost]
         [Route("/Order")]
-        public IActionResult Order(int? productId, [Bind("Id,CustomerName,CustomerPhone,CustomerAddress,Created,IsDelivered")] Order order)
+        public IActionResult Order(int? productId, int? storeId, [Bind("Id,CustomerName,CustomerPhone,CustomerAddress,Created,IsDelivered")] Order order)
         {
             order.Created = DateTime.Now;
             order.IsDelivered = false;
+            order.StoreId = storeId.Value;
 
 
             _context.Add(order);

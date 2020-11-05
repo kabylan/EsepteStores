@@ -3,14 +3,32 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Добро пожаловать!</h1>
     <br />
     <br />
+    <ul class="text-left " style="list-style-type: none">
+        <li class="p-2">
+            <a class="btn-link" asp-controller="Stores" asp-action="Index"><i class="fas fa-store text-primary px-2"></i>Мой магазин</a>
+        </li>
+        <li class="p-2">
+            <a class="btn-link" asp-controller="Products" asp-action="Index"><i class="fas fa-shopping-cart text-primary px-2"></i>Мои товары</a>
+        </li>
+        <li class="p-2">
+            <a class="btn-link" asp-controller="Orders" asp-action="Index"><i class="fas fa-users text-primary px-2"></i>Заказы клиентов</a>
+        </li>
+    </ul>
+    @*<h1 class="display-4">Добро пожаловать!</h1>*@
     <br />
-    <code>https://esepte.com/Products/@ViewBag.Store.Id</code>
+    <br />    
     <br />
     <br />
-    <a href="/Products/@ViewBag.Store.Id">Посмотреть как клиент</a>
+    <p>Ссылка на ваш интернет магазин:</p>
+    <br />
+    <code>
+        <a href="/Products/@ViewBag.Store.Id">http://esepte.com/Products/@ViewBag.Store.Id</a>
+    </code>
+    <br />
+    <br />
+    @*<a href="/Products/@ViewBag.Store.Id">Посмотреть как клиент</a>*@
 </div>
 <br />
 <br />

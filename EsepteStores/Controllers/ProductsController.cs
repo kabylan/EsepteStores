@@ -34,7 +34,10 @@ namespace EsepteStores.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View(await _context.Product.ToListAsync());
+            var list = await _context.Product.Where(p => p.StoreId == storeId).ToListAsync();
+            list.Reverse();
+
+            return View(list);
         }
 
         // GET: Products/Details/5

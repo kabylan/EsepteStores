@@ -97,7 +97,10 @@
             {
             <div class="col-6">
                 <a href="/Details/@item.Id" class="text-dark">
-                    <img src="~/@item.ProductImages.FirstOrDefault().Path" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                    @if (@item.ProductImages.FirstOrDefault() != null)
+                    {
+                        <img src="~/@item.ProductImages.FirstOrDefault().Path" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                    }
                     <p class="text-center p-0 m-0">
                         <small class="font-weight-bold">@item.Price</small>
                     </p>
@@ -198,7 +201,7 @@
     <footer class="container py-3">
         <div class="row">
             <div class="col-12 col-md text-center">
-                <small class="d-block mb-3 text-muted">&copy; 2020 @ViewBag.Store.Name</small>
+                <small class="d-block mb-3 text-muted">&copy; 2020 @ViewBag.Store.Name  <a href="http://esepte.com">EsepteStores</a></small>
             </div>
         </div>
     </footer>

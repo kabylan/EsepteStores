@@ -19,6 +19,8 @@ namespace EsepteStores.Models
         public DateTime Created {get;set;}
         [Display(Name = "Статус доставки")]
         public bool IsDelivered { get; set;}
+
+        public int StoreId { get; set; }
     }
 
     public class OrderPoruduct
