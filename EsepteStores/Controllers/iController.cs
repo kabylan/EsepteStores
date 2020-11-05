@@ -32,11 +32,18 @@ namespace EsepteStores.Controllers
             List<Product> products = _context.Product
                 .Where(p =>p.StoreId == storeId)
                 .Include(p => p.Store)
+                .Include(p => p.ProductImages)
                 .ToList();
             
+
             
             ViewBag.Products = products;
-            
+
+
+
+            ViewBag.Store = _context.Store.Find(storeId);
+
+
             
             return View();
         }
@@ -62,6 +69,10 @@ namespace EsepteStores.Controllers
 
 
             product.ProductImages = _context.ProductImages.Where(p => p.ProductId == productId).ToList();
+
+
+            ViewBag.Store = _context.Store.Find(product.StoreId);
+
 
             return View(product);
         }
