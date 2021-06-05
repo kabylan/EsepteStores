@@ -45,24 +45,6 @@
 </head>
 <body>
     <header>
-        <div class="collapse bg-dark" id="navbarHeader">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8 col-md-7 py-4">
-                        <h4 class="text-white">About</h4>
-                        <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-                    </div>
-                    <div class="col-sm-4 offset-md-1 py-4">
-                        <h4 class="text-white">Contact</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                            <li><a href="#" class="text-white">Like on Facebook</a></li>
-                            <li><a href="#" class="text-white">Email me</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="navbar navbar-dark bg-light shadow-sm">
             <div class="container d-flex justify-content-between">
                 <a href="/Products/@ViewBag.Store.Id" class="navbar-brand d-flex align-items-center">
@@ -80,59 +62,66 @@
         </div>
     </header>
     <br>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-white">
-            <li class="breadcrumb-item"><a href="/Products/@Model.StoreId">Товары</a></li>
-            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
-        </ol>
-    </nav>
-    <div class="p-3">
-        <h2>@Model.Name</h2>
-        <p>
-            @Model.Price
-        </p>
-        <div class="owl-carousel owl-theme">
-            @foreach (ProductImage productImage in Model.ProductImages)
-            {
-                <div class="item">
-                    <img class="img-fluid" src="~/@productImage.Path">
-                </div>
-            }
-        </div>
 
-        <div class="d-flex justify-content-around p-2">
-            @*<button type="button" class="btn btn-sm rounded btn-primary px-5 py-2">
-                Добавить в корзинку
-            </button>*@
-            <a href="/Order/@Model.StoreId/@Model.Id" class="btn btn-sm rounded btn-primary px-5 py-2">
-                Добавить в корзинку
-            </a>
-            @*<i class="far fa-thumbs-up fa-lg p-2"></i>*@
-        </div>
-        <div class="px-2 pt-5">
-            <i class="far fa-truck fa-lg"></i><br>
-            Доставка:
-            <br><small class="text-muted"> @Model.Deliver</small>
-        </div>
-        <hr>
+    <section class="pb-5 pt-2">
+        <div class="container px-2 px-lg-3 mt-5">
 
-        <div>
-            <div class="p-4">
-                <h3 class="">Описание</h3>
-                <hr>
-            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                    <li class="breadcrumb-item"><a href="/Products/@Model.StoreId">Товары</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+                </ol>
+            </nav>
+
+            <h2>@Model.Name</h2>
             <p>
-                @Model.Description<br /><br />
+                @Model.Price
             </p>
-        </div>
-    </div>
-    <hr />
-    <footer class="container py-3">
-        <div class="row">
-            <div class="col-12 col-md text-center">
-                <small class="d-block mb-3 text-muted">&copy; 2020 @ViewBag.Store.Name <a href="http://esepte.com">EsepteStores</a></small>
+            <div class="owl-carousel owl-theme">
+                @foreach (ProductImage productImage in Model.ProductImages)
+                {
+                    <div class="item">
+                        <img class="img-fluid shadow p-3 mb-5 bg-white rounded" src="~/@productImage.Path">
+                    </div>
+                }
+            </div>
+            <div class="d-flex col-6">
+                <div class="col-6">
+                    <div class="d-flex justify-content-center p-2">
+                        <a href="/Order/@Model.StoreId/@Model.Id" class="btn btn-sm rounded btn-primary px-5 py-2">
+                            Добавить в корзинку
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    @*<i class="far fa-truck fa-lg"></i>*@<br>
+                    Доставка:
+                    <br><small class="text-muted"> @Model.Deliver</small>
+                </div>
+            </div>
+            <hr>
+            <div class="p-4">
+                <div class="p-4">
+                    <h3 class="">Описание</h3>
+                    <hr>
+                </div>
+                <p>
+                    @Model.Description<br /><br />
+                </p>
             </div>
         </div>
+    </section>
+    <hr />
+    @*<footer class="container py-3">
+            <div class="row">
+                <div class="col-12 col-md text-center">
+                    <small class="d-block mb-3 text-muted">&copy; 2020 @ViewBag.Store.Name <a href="http://esepte.com">EsepteStores</a></small>
+                </div>
+            </div>
+        </footer>*@
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">&copy; 2021 @ViewBag.Store.Name </p></div>
     </footer>
 
 
@@ -143,7 +132,7 @@
     <script src="~/owlcarousel/dist/owl.carousel.min.js"></script>
     <script>
         $('.owl-carousel').owlCarousel({
-            loop: true,
+            loop: false,
             margin: 10,
             responsive: {
                 0: {

@@ -79,8 +79,9 @@
             </div>
         </div>
     </header>
-    <main role="main">
-        <div class="p-3">
+
+    <section class="pb-5 pt-2">
+        <div class="container px-2 px-lg-3 mt-5">
 
             <h4><i class="far fa-shopping-cart fa-lg p-3"></i>Корзинка</h4>
             <br>
@@ -96,16 +97,16 @@
                         <td class="text-center">
                             @ViewBag.Product.Name
                             @*<br>
-        <b>@ViewBag.Product.Price</b>*@
+                        <b>@ViewBag.Product.Price</b>*@
                         </td>
                         <td class="text-center">
                             @ViewBag.Product.Price
                         </td>
                         @*<td class="text-center">
-                            <button class="btn mt-3 btn-danger btn-sm">Отменить</button>
-                        </td>*@
+                        <button class="btn mt-3 btn-danger btn-sm">Отменить</button>
+                    </td>*@
                     </tr>
-                    
+
                 </tbody>
             </table>
             <hr>
@@ -114,10 +115,10 @@
             <h4><i class="far fa-receipt fa-lg p-3"></i>Офорление заказа</h4>
             <hr>
 
-            <div class="">
+            <div class="col-6">
                 <form action="/Order" method="post">
-                    <input type="hidden" name="productId" value="@ViewBag.Product.Id"/>
-                    <input type="hidden" name="storeId" value="@ViewBag.Product.StoreId"/>
+                    <input type="hidden" name="productId" value="@ViewBag.Product.Id" />
+                    <input type="hidden" name="storeId" value="@ViewBag.Product.StoreId" />
                     <div class="form-group">
                         <label for="">Ваше имя</label>
                         <input type="text" name="CustomerName" class="form-control">
@@ -135,18 +136,22 @@
                     </div>
                 </form>
             </div>
-        </div>
 
-    </main>
+        </div>
+    </section>
     <hr />
-    <footer class="container py-3">
-        <div class="row">
-            <div class="col-12 col-md text-center">
-                <small class="d-block mb-3 text-muted">&copy; 2020 @ViewBag.Store.Name  <a href="http://esepte.com">EsepteStores</a></small>
+    @*<footer class="container py-3">
+            <div class="row">
+                <div class="col-12 col-md text-center">
+                    <small class="d-block mb-3 text-muted">&copy; 2020 @ViewBag.Store.Name  <a href="http://esepte.com">EsepteStores</a></small>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>*@
 
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">&copy; 2021 @ViewBag.Store.Name </p></div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

@@ -40,172 +40,295 @@
           font-size: 3.5rem;
         }
       }
+
+      .card:hover {
+
+      }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="~/album.css" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <div class="collapse bg-dark" id="navbarHeader">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8 col-md-7 py-4">
-                        <h4 class="text-white">About</h4>
-                        <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-                    </div>
-                    <div class="col-sm-4 offset-md-1 py-4">
-                        <h4 class="text-white">Contact</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                            <li><a href="#" class="text-white">Like on Facebook</a></li>
-                            <li><a href="#" class="text-white">Email me</a></li>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">@ViewBag.Store.Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">О нас</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Магазин</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">Все товары</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#!">Популярные товары</a></li>
+                            <li><a class="dropdown-item" href="#!">Новые поступления</a></li>
                         </ul>
-                    </div>
-                </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tel:@ViewBag.Store.PhoneFirst" class="btn btn-lg btn-light text-success">
+                            <i class="far fa-phone fa-lg"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="navbar navbar-dark bg-light shadow-sm">
-            <div class="container d-flex justify-content-between">
-                <a href="/Products/@ViewBag.Store.Id" class="navbar-brand d-flex align-items-center">
-                    <img src="~/@ViewBag.Store.LogoFilePath" class="img-fluid rounded" style="width: 30px; height: 30px;">
-                    <strong class="p-2 text-dark">@ViewBag.Store.Name</strong>
-                </a>
-                <a href="tel:@ViewBag.Store.PhoneFirst" class="btn btn-lg btn-light text-success">
-                   <i class="far fa-phone fa-lg"></i>
-                </a>
-                @*<button type="button" class="btn btn-light text-primary">
-            <i class="far fa-shopping-cart fa-lg"></i>
-            <span class="badge badge-light text-primary">4</span>
-        </button>*@
+    </nav>
+    <!-- Header-->
+    <header class="bg-dark py-2">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-5 fw-bolder">Онлайн магазин @ViewBag.Store.Name</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Добро пожаловать!</p>
             </div>
         </div>
     </header>
-    <br>
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-white">
-            <li class="breadcrumb-item"><a href="/Products/@ViewBag.Store.Id">Товары</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Все товары</li>
-        </ol>
-    </nav>
+    @*<header>
+        <div class="navbar navbar-dark bg-light shadow-sm">
+            <div class="container d-flex justify-content-between">
+                <a href="/Products/@ViewBag.Store.Id" class="navbar-brand d-flex align-items-center">
+                    <img src="~/@ViewBag.Store.LogoFilePath" class="img-fluid rounded" style="width: 100px; height: 100px;">
+                    <strong class="p-2 text-dark">@ViewBag.Store.Name</strong>
+                </a>
+                <a href="tel:@ViewBag.Store.PhoneFirst" class="btn btn-lg btn-light text-success">
+                    <i class="far fa-phone fa-lg"></i>
+                </a>
+                <button type="button" class="btn btn-light text-primary">
+                            <i class="far fa-shopping-cart fa-lg"></i>
+                            <span class="badge badge-light text-primary">4</span>
+                        </button>
+                </div>
+            </div>
+        </header>
+        <br>*@
+
     <main role="main">
 
-        <div class="row p-1">
+        @*<div class="row p-1">
 
-            @foreach(Product item in ViewBag.Products)
-            {
-            <div class="col-6">
-                <a href="/Details/@item.Id" class="text-dark">
-                    @if (@item.ProductImages.FirstOrDefault() != null)
+                @foreach (Product item in ViewBag.Products)
+                {
+                    <div class="col-2">
+                        <a href="/Details/@item.Id" class="text-dark">
+
+                            <div class="d-flex justify-content-center">
+                                @if (@item.ProductImages.FirstOrDefault() != null)
+                                {
+                                    <img src="~/@item.ProductImages.FirstOrDefault().Path" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                                }
+                            </div>
+
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">@item.Price</small>
+                            </p>
+                            <p class="text-center">@item.Name</p>
+                        </a>
+                    </div>
+                }
+            </div>*@
+
+        <!-- Header-->
+        @*<header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Онлайн магазин @ViewBag.Store.Name</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Добро пожаловать!</p>
+                </div>
+            </div>
+        </header>*@
+
+        @*<nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item"><a href="/Products/@ViewBag.Store.Id">Товары</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Все товары</li>
+            </ol>
+        </nav>*@
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-2 px-lg-3 mt-5">
+                <div class="row gx-2 gx-lg-3 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+
+                    @*@foreach (Product item in ViewBag.Products)
+                        {
+                            <div class="col-2">
+                                <a href="/Details/@item.Id" class="text-dark">
+
+                                    <div class="d-flex justify-content-center">
+                                        @if (@item.ProductImages.FirstOrDefault() != null)
+                                        {
+                                            <img src="~/@item.ProductImages.FirstOrDefault().Path" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                                        }
+                                    </div>
+
+                                    <p class="text-center p-0 m-0">
+                                        <small class="font-weight-bold">@item.Price</small>
+                                    </p>
+                                    <p class="text-center">@item.Name</p>
+                                </a>
+                            </div>
+                        }*@
+
+                    @foreach (Product item in ViewBag.Products)
                     {
-                        <img src="~/@item.ProductImages.FirstOrDefault().Path" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+
+                        <div class="col mb-5">
+                            <div class="card h-100 shadow-lg p-3 mb-5 bg-body rounded">
+                                <!-- Product image-->
+                                @if (@item.ProductImages.FirstOrDefault() != null)
+                                {
+                                    <img class="card-img-top" src="~/@item.ProductImages.FirstOrDefault().Path" alt="..." />
+                                }
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">@item.Name</h5>
+                                        <!-- Product price-->
+                                        <small class="font-weight-bold">@item.Price</small>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-primary mt-auto" href="/Details/@item.Id">Купить</a></div>
+                                </div>
+                            </div>
+                        </div>
                     }
-                    <p class="text-center p-0 m-0">
-                        <small class="font-weight-bold">@item.Price</small>
-                    </p>
-                    <p class="text-center">@item.Name</p>
-                </a>
-            </div>
-            }
-        </div>
-            @*<div class="row p-1">
-                <div class="col-6">
-                    <a href="details.html" class="text-dark">
-                        <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
-                        <p class="text-center p-0 m-0">
-                            <small class="font-weight-bold">33 000 сом</small>
-                        </p>
-                        <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
-                    </a>
-                </div>
-                <div class="col-6">
-                    <a href="details.html" class="text-dark">
-                        <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
-                        <p class="text-center p-0 m-0">
-                            <small class="font-weight-bold">33 000 сом</small>
-                        </p>
-                        <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
-                    </a>
-                </div>
-            </div>
-            <hr>
-            <div class="row p-1">
-                <div class="col-6">
-                    <a href="details.html" class="text-dark">
-                        <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
-                        <p class="text-center p-0 m-0">
-                            <small class="font-weight-bold">33 000 сом</small>
-                        </p>
-                        <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
-                    </a>
+                    <!--<div class="col mb-5">
+                    <div class="card h-100">-->
+                    <!-- Product image-->
+                    <!--<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
+                    <!-- Product details-->
+                    <!--<div class="card-body p-4">
+                    <div class="text-center">-->
+                    <!-- Product name-->
+                    <!--<h5 class="fw-bolder">Fancy Product</h5>-->
+                    <!-- Product price-->
+                    <!--$40.00 - $80.00
+                        </div>
+                    </div>-->
+                    <!-- Product actions-->
+                    <!--<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                            </div>
+                        </div>
+                    </div>-->
+
+
 
                 </div>
-                <div class="col-6">
-                    <a href="details.html" class="text-dark">
-                        <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
-                        <p class="text-center p-0 m-0">
-                            <small class="font-weight-bold">33 000 сом</small>
-                        </p>
-                        <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
-                    </a>
-                </div>
             </div>
-            <hr>
-            <div class="row p-1">
-                <div class="col-6">
-                    <a href="details.html" class="text-dark">
-                        <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
-                        <p class="text-center p-0 m-0">
-                            <small class="font-weight-bold">33 000 сом</small>
-                        </p>
-                        <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
-                    </a>
+        </section>
 
+        @*<div class="row p-1">
+                    <div class="col-6">
+                        <a href="details.html" class="text-dark">
+                            <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">33 000 сом</small>
+                            </p>
+                            <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="details.html" class="text-dark">
+                            <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">33 000 сом</small>
+                            </p>
+                            <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <a href="details.html" class="text-dark">
-                        <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
-                        <p class="text-center p-0 m-0">
-                            <small class="font-weight-bold">33 000 сом</small>
-                        </p>
-                        <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
-                    </a>
-                </div>
-            </div>
-            <hr>
-            <div class="row p-1">
-                <div class="col-6">
-                    <a href="details.html" class="text-dark">
-                        <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
-                        <p class="text-center p-0 m-0">
-                            <small class="font-weight-bold">33 000 сом</small>
-                        </p>
-                        <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
-                    </a>
+                <hr>
+                <div class="row p-1">
+                    <div class="col-6">
+                        <a href="details.html" class="text-dark">
+                            <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">33 000 сом</small>
+                            </p>
+                            <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
+                        </a>
 
+                    </div>
+                    <div class="col-6">
+                        <a href="details.html" class="text-dark">
+                            <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">33 000 сом</small>
+                            </p>
+                            <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <a href="details.html" class="text-dark">
-                        <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
-                        <p class="text-center p-0 m-0">
-                            <small class="font-weight-bold">33 000 сом</small>
-                        </p>
-                        <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
-                    </a>
+                <hr>
+                <div class="row p-1">
+                    <div class="col-6">
+                        <a href="details.html" class="text-dark">
+                            <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">33 000 сом</small>
+                            </p>
+                            <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
+                        </a>
+
+                    </div>
+                    <div class="col-6">
+                        <a href="details.html" class="text-dark">
+                            <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">33 000 сом</small>
+                            </p>
+                            <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
+                        </a>
+                    </div>
                 </div>
-        </div>*@
-        
+                <hr>
+                <div class="row p-1">
+                    <div class="col-6">
+                        <a href="details.html" class="text-dark">
+                            <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">33 000 сом</small>
+                            </p>
+                            <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
+                        </a>
+
+                    </div>
+                    <div class="col-6">
+                        <a href="details.html" class="text-dark">
+                            <img src="~/images/stores/store_1/products/iphone-8-1.jpg" class="img-fluid rounded d-flex" style="width: 160px; height: 220px; object-fit: contain;" alt="">
+                            <p class="text-center p-0 m-0">
+                                <small class="font-weight-bold">33 000 сом</small>
+                            </p>
+                            <p class="text-center">Смартфон Apple iPhone 11 mini 32 Gb (RAM 8 Gb)</p>
+                        </a>
+                    </div>
+            </div>*@
+
     </main>
-    <hr />
-    <footer class="container py-3">
-        <div class="row">
-            <div class="col-12 col-md text-center">
-                <small class="d-block mb-3 text-muted">&copy; 2020 @ViewBag.Store.Name  <a href="http://esepte.com">EsepteStores</a></small>
-            </div>
-        </div>
-    </footer>
 
+    @*<footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <hr />
+                    <div class="col-12 col-md">
+                        <small class="d-block mb-3 text-muted">&copy; 2020 @ViewBag.Store.Name  <a href="http://esepte.com">EsepteStores</a></small>
+                    </div>
+                </div>
+            </div>
+        </footer>*@
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">&copy; 2021 @ViewBag.Store.Name </p></div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -215,7 +338,7 @@
     <script src="~/owlcarousel/dist/owl.carousel.min.js"></script>
     <script>
         $('.owl-carousel').owlCarousel({
-            loop: true,
+            loop: false,
             margin: 10,
             responsive: {
                 0: {
