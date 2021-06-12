@@ -30,10 +30,29 @@ namespace EsepteStores.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var list = await _context.Order.Where(p => p.StoreId == storeId).ToListAsync();
-            list.Reverse();
+            // заказы магазина
+            var orders = await _context.Order.Where(p => p.StoreId == storeId).ToListAsync();
+            orders.Reverse();
 
-            return View(list);
+            // список товар-заказ
+            List<OrderPoruduct> orderPoruducts = new List<OrderPoruduct>();
+            // добавляем товары связанные с заказом
+            foreach (var order in orders)
+            {
+                var orderProduct = _context.OrderPoruduct
+                    .Include(op => op.Order)
+                    .Include(op => op.Product)
+                    .Where(op => op.OrderId == order.Id)
+                    .FirstOrDefault();
+                if (orderProduct != null)
+                {
+                    orderPoruducts.Add(orderProduct);
+                }
+            }
+
+            ViewBag.OrderPoruducts = orderPoruducts;
+
+            return View(orders);
         }
 
         // GET: Orders/Details/5
@@ -103,6 +122,11 @@ namespace EsepteStores.Controllers
             {
                 return NotFound();
             }
+
+
+            int? storeId = HttpContext.Session.GetInt32("StoreId");
+            order.StoreId = (int)storeId;
+
 
             if (ModelState.IsValid)
             {

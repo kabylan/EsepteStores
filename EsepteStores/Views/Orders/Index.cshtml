@@ -4,6 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    .delivered {
+        background-color: #5cff69;
+    }
+    .waiting {
+        background-color: #fffa5c;
+    }
+</style>
+
 <br />
 <a asp-action="Index" asp-controller="Home" class="p-1"><i class="fas fa-long-arrow-alt-left fa-lg btn btn-primary"></i></a>
 <br />
@@ -34,7 +43,7 @@
             <th></th>
         </tr>
     </thead>*@
-@foreach (var item in Model)
+@*@foreach (var item in Model)
 {
     <table class="table">
         <tbody>
@@ -88,4 +97,157 @@
     </table>
     <br />
     <br />
-}
+}*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Товар</th>
+            <th scope="col">Цена</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.CustomerName)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.CustomerPhone)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.CustomerAddress)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Created)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.IsDelivered)</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (OrderPoruduct orderProduct in ViewBag.OrderPoruducts)
+        {
+            if (orderProduct.Order.IsDelivered)
+            {
+                <tr class="delivered">
+                    <td>
+                        @orderProduct.Product.Name
+                    </td>
+                    <td>
+                        @orderProduct.Product.Price
+                    </td>
+                    <td>
+                        @orderProduct.Order.CustomerName
+                    </td>
+                    <td>
+                        @orderProduct.Order.CustomerPhone
+                    </td>
+                    <td>
+                        @orderProduct.Order.CustomerAddress
+                    </td>
+                    <td>
+                        @orderProduct.Order.Created
+                    </td>
+                    <td>
+                        Доставлено
+                    </td>
+                    <td>
+
+                        <a href="/Orders/Edit/@orderProduct.Order.Id" class="p-2">Изменить</a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr class="waiting">
+                    <td>
+                        @orderProduct.Product.Name
+                    </td>
+                    <td>
+                        @orderProduct.Product.Price
+                    </td>
+                    <td>
+                        @orderProduct.Order.CustomerName
+                    </td>
+                    <td>
+                        @orderProduct.Order.CustomerPhone
+                    </td>
+                    <td>
+                        @orderProduct.Order.CustomerAddress
+                    </td>
+                    <td>
+                        @orderProduct.Order.Created
+                    </td>
+                    <td>
+                        Ожидает доставки
+                    </td>
+                    <td>
+                        <a href="/Orders/Edit/@orderProduct.Order.Id" class="p-2">Изменить</a>
+                    </td>
+                </tr>
+
+            }
+        }
+    </tbody>
+</table>
+
+@*@foreach (OrderPoruduct orderProduct in ViewBag.OrderPoruducts)
+{
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <td>
+                    Товар
+                </td>
+                <td>
+                    @orderProduct.Product.Name
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Цена
+                </td>
+                <td>
+                    @orderProduct.Product.Price
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </td>
+                <td>
+                    @orderProduct.Order.CustomerName
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.CustomerPhone)
+                </td>
+                <td>
+                    @orderProduct.Order.CustomerPhone
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.CustomerAddress)
+                </td>
+                <td>
+                    @orderProduct.Order.CustomerAddress
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Created)
+                </td>
+                <td>
+                    @orderProduct.Order.Created
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.IsDelivered)
+                </td>
+                <td>
+                    @orderProduct.Order.IsDelivered
+                    <a href="/Orders/Edit/@orderProduct.Order.Id" class="p-2">Изменить</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <br />
+}*@

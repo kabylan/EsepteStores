@@ -71,6 +71,7 @@ namespace EsepteStores.Controllers
 
             _context.Add(order);
 
+            _context.SaveChanges();
 
             _context.Add(new OrderPoruduct() { OrderId = order.Id, ProductId = productId.Value });
 
