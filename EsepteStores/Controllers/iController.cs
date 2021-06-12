@@ -78,6 +78,7 @@ namespace EsepteStores.Controllers
 
             _context.SaveChanges();
 
+            ViewBag.Store = _context.Store.Find(order.StoreId);
 
             return RedirectToAction("Products", new { storeId = _context.Product.Find(productId).StoreId });
         }
