@@ -6,6 +6,8 @@ using EsepteStores.Data;
 using EsepteStores.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace EsepteStores.Controllers
 {
@@ -44,11 +46,47 @@ namespace EsepteStores.Controllers
 
 
             ViewBag.Store = _context.Store.Find(storeId);
-
-
             
+
             return View();
         }
+
+        [Route("/Order")]
+        public IActionResult Order()
+        {
+            int? a = HttpContext.Session.GetInt32("StoreId");
+
+            ViewBag.Store = _context.Store.Find(a);
+
+            return View();
+        }
+
+
+        [HttpPost]
+        [Route("/OrderWithList")]
+        public IActionResult Order(List<int?> productIds, int? storeId, [Bind("Id,CustomerName,CustomerPhone,CustomerAddress,Created,IsDelivered")] Order order)
+        {
+            order.Created = DateTime.Now;
+            order.IsDelivered = false;
+            order.StoreId = storeId.Value;
+
+
+            _context.Add(order);
+
+            _context.SaveChanges();
+
+            foreach(var productId in productIds)
+            {
+                _context.Add(new OrderPoruduct() { OrderId = order.Id, ProductId = productId.Value });
+            }
+
+            _context.SaveChanges();
+
+            ViewBag.Store = _context.Store.Find(order.StoreId);
+
+            return RedirectToAction("Products", new { storeId = storeId });
+        }
+
 
         [Route("/Order/{storeId}/{productId}")]
         public IActionResult Order(int? storeId, int? productId)
@@ -101,7 +139,6 @@ namespace EsepteStores.Controllers
 
 
             ViewBag.Store = _context.Store.Find(product.StoreId);
-
 
             return View(product);
         }

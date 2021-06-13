@@ -4,72 +4,121 @@
 
 }
 
-<main id="main">
+@if (ViewBag.Product != null)
+{
+    <main id="main">
 
-    <section class="pb-5 mt-5 pt-2 ">
-        <div class="container px-2 px-lg-3 mt-5">
+        <section class="pb-5 mt-5 pt-2 ">
+            <div class="container px-2 px-lg-3 mt-5">
 
-            <h4><i class="far fa-shopping-cart fa-lg p-3"></i>Корзинка</h4>
-            <br>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="text-center">Название товара</th>
-                        <th class="text-center">Цена</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">
-                            @ViewBag.Product.Name
-                            @*<br>
-                                <b>@ViewBag.Product.Price</b>*@
-                        </td>
-                        <td class="text-center">
-                            @ViewBag.Product.Price
-                        </td>
-                        @*<td class="text-center">
-                                <button class="btn mt-3 btn-danger btn-sm">Отменить</button>
-                            </td>*@
-                    </tr>
+                <h4><i class="far fa-shopping-cart fa-lg p-3"></i>Корзинка</h4>
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Название товара</th>
+                            <th class="text-center">Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                @ViewBag.Product.Name
+                            </td>
+                            <td class="text-center">
+                                @ViewBag.Product.Price
+                            </td>
+                        </tr>
 
-                </tbody>
-            </table>
-        </div>
-    </section>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact mt-5">
-        <div class="container">
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact mt-5">
+            <div class="container">
 
-            <div class="d-flex justify-content-center mt-5">
-                <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="/Order" method="post" role="form" class="php-email-form">
-                        <input type="hidden" name="productId" value="@ViewBag.Product.Id" />
-                        <input type="hidden" name="storeId" value="@ViewBag.Product.StoreId" />
-                        <div class="form-row">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="CustomerName" placeholder="Ваше имя" class="form-control">
-                                @*<input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />*@
-                                @*<div class="validate"></div>*@
+                <div class="d-flex justify-content-center mt-5">
+                    <div class="col-lg-8 mt-5 mt-lg-0">
+                        <form action="/Order" method="post" role="form" class="php-email-form">
+                            <input type="hidden" name="productId" value="@ViewBag.Product.Id" />
+                            <input type="hidden" name="storeId" value="@ViewBag.Product.StoreId" />
+                            <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <input type="text" name="CustomerName" placeholder="Ваше имя" class="form-control">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" name="CustomerPhone" placeholder="Ваш номер телефона" class="form-control">
+                                </div>
                             </div>
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="CustomerPhone" placeholder="Ваш номер телефона" class="form-control">
-                                @*<input type="email" class="form-control" name="email" id="email" placeholder="Ваш номер телефона" data-rule="email" data-msg="Please enter a valid email" />*@
-                                @*<div class="validate"></div>*@
+                            <div class="form-group">
+                                <input type="text" name="CustomerAddress" placeholder="Ваш адрес" class="form-control">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="CustomerAddress" placeholder="Ваш адрес" class="form-control">
-                            @*<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />*@
-                            @*<div class="validate"></div>*@
-                        </div>
-                        <div class="text-center"><button type="submit">Отправить</button></div>
-                    </form>
+                            <div class="text-center"><button type="submit">Отправить</button></div>
+                        </form>
+                    </div>
+
                 </div>
 
             </div>
+        </section><!-- End Contact Section -->
+    </main>
+}
+else
+{
+    <main id="main">
 
-        </div>
-    </section><!-- End Contact Section -->
-</main>
+        <section class="pb-5 mt-5 pt-2 ">
+            <div class="container px-2 px-lg-3 mt-5">
+
+                <h4><i class="far fa-shopping-cart fa-lg p-3"></i>Корзинка</h4>
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Название товара</th>
+                            <th class="text-center">Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody class="productsList">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact mt-5">
+            <div class="container">
+
+                <div class="d-flex justify-content-center mt-5">
+                    <div class="col-lg-8 mt-5 mt-lg-0">
+                        <form action="/OrderWithList" method="post" role="form" class="php-email-form">
+                            <div class="productsIds">
+
+                            </div>
+                            @*<input type="hidden" name="productId" value="@ViewBag.Product.Id" />*@
+                            <input type="hidden" name="storeId" value="@ViewBag.Store.Id" />
+                            <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <input type="text" name="CustomerName" placeholder="Ваше имя" class="form-control">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" name="CustomerPhone" placeholder="Ваш номер телефона" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="CustomerAddress" placeholder="Ваш адрес" class="form-control">
+                            </div>
+                            <div class="text-center"><button id="sendFormButton" type="submit">Отправить</button></div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Contact Section -->
+    </main>
+}
+
+<script src="~/JavaScript1.js?n=2"></script>

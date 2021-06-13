@@ -39,14 +39,15 @@ namespace EsepteStores.Controllers
             // добавляем товары связанные с заказом
             foreach (var order in orders)
             {
-                var orderProduct = _context.OrderPoruduct
+                var orderProductsByOrderID = _context.OrderPoruduct
                     .Include(op => op.Order)
                     .Include(op => op.Product)
                     .Where(op => op.OrderId == order.Id)
-                    .FirstOrDefault();
-                if (orderProduct != null)
+                    .ToList();
+
+                if (orderProductsByOrderID != null)
                 {
-                    orderPoruducts.Add(orderProduct);
+                    orderPoruducts.AddRange(orderProductsByOrderID);
                 }
             }
 
