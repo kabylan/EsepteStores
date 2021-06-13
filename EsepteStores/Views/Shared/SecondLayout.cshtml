@@ -72,43 +72,40 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Tempo</h3>
+                        <h3>EsepteStores</h3>
                         <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            331 Ленин Проспект, <br>
+                            Ош 723500<br>
+                            Кыргызская Республика <br><br>
+                            <strong>Phone:</strong> @ViewBag.Store.PhoneFirst<br>
+                            <strong>Email:</strong> eseptestores@gmail.com<br>
                         </p>
                     </div>
 
                     <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
+                        <h4>Для покупателя</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Products/@ViewBag.Store.Id">Главная</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Products/@ViewBag.Store.Id#portfolio">Товары</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Order">Корзина</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
+                        <h4>Для администратора</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/">Админ панель</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Stores">Мой магазин</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Products">Мои товары</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Orders">Мои заказы</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <h4>Подпишитесь на нашу рассылку новостей</h4>
+                        <p>У нас для вас хорошие новости!</p>
                         <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                            <input type="email" name="email"><input type="submit" value="Подписаться">
                         </form>
                     </div>
 
@@ -120,7 +117,7 @@
 
             <div class="mr-md-auto text-center text-md-left">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>Tempo</span></strong>. All Rights Reserved
+                    &copy; Copyright <strong><span>EsepteStores</span></strong>. Все права защищены
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">

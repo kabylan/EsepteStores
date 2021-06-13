@@ -32,7 +32,7 @@ function addCartItemsToForm() {
 $(document).ready(function () {
     addCartItemsToForm();
     showCartItems();
-
+        
     $('#sendFormButton').click(function () {
         clearItems();
         location.reload();
