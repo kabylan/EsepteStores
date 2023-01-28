@@ -1,16 +1,28 @@
 ﻿@model EsepteStores.Models.Card
 
 @{
-    ViewData["Title"] = "Добавление";
+    ViewData["Title"] = "Edit";
 }
 
+<h1>Edit</h1>
 
-<h4>@ViewData["Title"]</h4>
+<h4>Card</h4>
 <hr />
 <div class="row">
-    <div class="col-md-6">
-        <form asp-action="Create">
+    <div class="col-md-4">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="StoreId" class="control-label"></label>
+                <select asp-for="StoreId" class="form-control" asp-items="ViewBag.StoreId"></select>
+                <span asp-validation-for="StoreId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceTypeId" class="control-label"></label>
+                <select asp-for="ServiceTypeId" class="form-control" asp-items="ViewBag.ServiceTypeId"></select>
+                <span asp-validation-for="ServiceTypeId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="FullName" class="control-label"></label>
                 <input asp-for="FullName" class="form-control" />
@@ -21,7 +33,7 @@
                 <input asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
+            <div class="form-group">
                 <label asp-for="Passport" class="control-label"></label>
                 <input asp-for="Passport" class="form-control" />
                 <span asp-validation-for="Passport" class="text-danger"></span>
@@ -30,35 +42,31 @@
                 <label asp-for="Phone" class="control-label"></label>
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsPayed" /> @Html.DisplayNameFor(model => model.IsPayed)
                 </label>
             </div>
-            @*<div class="form-group">
+            <div class="form-group">
                 <label asp-for="RegisterDate" class="control-label"></label>
                 <input asp-for="RegisterDate" class="form-control" />
                 <span asp-validation-for="RegisterDate" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="ServiceTypeId" class="control-label"></label>
-                <select asp-for="ServiceTypeId" class ="form-control" asp-items="ViewBag.ServiceTypeId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Comment" class="control-label"></label>                
-                <textarea asp-for="Comment" class="form-control" rows="5"></textarea>
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />
                 <span asp-validation-for="Comment" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Добавить" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Назад</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

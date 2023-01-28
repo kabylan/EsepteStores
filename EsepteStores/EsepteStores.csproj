@@ -25,6 +25,10 @@
     <Compile Remove="Controllers\ProductsController.cs" />
     <Compile Remove="Migrations\20201105144357_A.cs" />
     <Compile Remove="Migrations\20201105144357_A.Designer.cs" />
+    <Compile Remove="Migrations\20230128093623_Cards.cs" />
+    <Compile Remove="Migrations\20230128093623_Cards.Designer.cs" />
+    <Compile Remove="Migrations\20230128150338_ServiceType.cs" />
+    <Compile Remove="Migrations\20230128150338_ServiceType.Designer.cs" />
     <Compile Remove="Models\Order.cs" />
     <Compile Remove="Models\Product.cs" />
   </ItemGroup>

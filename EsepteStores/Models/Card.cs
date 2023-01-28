@@ -9,9 +9,12 @@ namespace EsepteStores.Models
     public class Card
     {
         public int Id { get; set; }
-
+        
         public int StoreId { get; set; }
         public Store Store { get; set; }
+        [Display(Name = "Вид услуги")]
+        public int ServiceTypeId { get; set; }
+        public ServiceType ServiceType { get; set; }
 
         [Display(Name = "ФИО")]
         public string FullName { get; set; }
@@ -35,6 +38,8 @@ namespace EsepteStores.Models
 
         [Display(Name = "Комментарии")]
         public string Comment { get; set; }
+
+        
     }
 
 }

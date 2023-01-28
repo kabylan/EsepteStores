@@ -7,40 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EsepteStores.Data;
 using EsepteStores.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace EsepteStores.Controllers
 {
-    public class CardsController : Controller
+    public class Cards1Controller : Controller
     {
         private readonly EsepteStoresContext _context;
 
-        public CardsController(EsepteStoresContext context)
+        public Cards1Controller(EsepteStoresContext context)
         {
             _context = context;
         }
 
-        // GET: Cards
+        // GET: Cards1
         public async Task<IActionResult> Index()
         {
-
-            int? storeId = HttpContext.Session.GetInt32("StoreId");
-
-            if (storeId == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            var list = await _context.Card.
-                Where(p => p.StoreId == storeId).
-                Include(c => c.Store).
-                Include(c => c.ServiceType).
-                ToListAsync();
-            list.Reverse();
-
-            return View(list);
+            var esepteStoresContext = _context.Card.Include(c => c.ServiceType).Include(c => c.Store);
+            return View(await esepteStoresContext.ToListAsync());
         }
 
-        // GET: Cards/Details/5
+        // GET: Cards1/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Card == null)
@@ -49,6 +35,7 @@ namespace EsepteStores.Controllers
             }
 
             var card = await _context.Card
+                .Include(c => c.ServiceType)
                 .Include(c => c.Store)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (card == null)
@@ -59,37 +46,33 @@ namespace EsepteStores.Controllers
             return View(card);
         }
 
-        // GET: Cards/Create
+        // GET: Cards1/Create
         public IActionResult Create()
         {
-            ViewData["ServiceTypeId"] = new SelectList(_context.ServiceType, "Id", "Name");
-
+            ViewData["ServiceTypeId"] = new SelectList(_context.ServiceType, "Id", "Id");
+            ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id");
             return View();
         }
 
-        // POST: Cards/Create
+        // POST: Cards1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,StoreId,FullName,BirthDate,Passport,ServiceTypeId,Phone,IsPayed,RegisterDate,Comment")] Card card)
-        public async Task<IActionResult> Create([Bind("Id,FullName,BirthDate,ServiceTypeId,IsPayed,Comment")] Card card)
+        public async Task<IActionResult> Create([Bind("Id,StoreId,ServiceTypeId,FullName,BirthDate,Passport,Phone,IsPayed,RegisterDate,Comment")] Card card)
         {
             if (ModelState.IsValid)
             {
-
-                int? a = HttpContext.Session.GetInt32("StoreId");
-                card.StoreId = a.Value;
                 _context.Add(card);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ServiceTypeId"] = new SelectList(_context.ServiceType, "Id", "Name", card.ServiceTypeId);
-
+            ViewData["ServiceTypeId"] = new SelectList(_context.ServiceType, "Id", "Id", card.ServiceTypeId);
+            ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id", card.StoreId);
             return View(card);
         }
 
-        // GET: Cards/Edit/5
+        // GET: Cards1/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Card == null)
@@ -102,18 +85,17 @@ namespace EsepteStores.Controllers
             {
                 return NotFound();
             }
-            ViewData["ServiceTypeId"] = new SelectList(_context.ServiceType, "Id", "Name", card.ServiceTypeId);
-
-            //ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id", card.StoreId);
+            ViewData["ServiceTypeId"] = new SelectList(_context.ServiceType, "Id", "Id", card.ServiceTypeId);
+            ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id", card.StoreId);
             return View(card);
         }
 
-        // POST: Cards/Edit/5
+        // POST: Cards1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,StoreId,FullName,BirthDate,ServiceTypeId,Passport,Phone,IsPayed,RegisterDate,Comment")] Card card)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,StoreId,ServiceTypeId,FullName,BirthDate,Passport,Phone,IsPayed,RegisterDate,Comment")] Card card)
         {
             if (id != card.Id)
             {
@@ -124,9 +106,6 @@ namespace EsepteStores.Controllers
             {
                 try
                 {
-
-                    int? a = HttpContext.Session.GetInt32("StoreId");
-                    card.StoreId = a.Value;
                     _context.Update(card);
                     await _context.SaveChangesAsync();
                 }
@@ -143,13 +122,12 @@ namespace EsepteStores.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["ServiceTypeId"] = new SelectList(_context.ServiceType, "Id", "Name", card.ServiceTypeId);
-
+            ViewData["ServiceTypeId"] = new SelectList(_context.ServiceType, "Id", "Id", card.ServiceTypeId);
+            ViewData["StoreId"] = new SelectList(_context.Store, "Id", "Id", card.StoreId);
             return View(card);
         }
 
-        // GET: Cards/Delete/5
+        // GET: Cards1/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Card == null)
@@ -158,6 +136,7 @@ namespace EsepteStores.Controllers
             }
 
             var card = await _context.Card
+                .Include(c => c.ServiceType)
                 .Include(c => c.Store)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (card == null)
@@ -168,7 +147,7 @@ namespace EsepteStores.Controllers
             return View(card);
         }
 
-        // POST: Cards/Delete/5
+        // POST: Cards1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

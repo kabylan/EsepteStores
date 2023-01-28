@@ -32,6 +32,20 @@ namespace EsepteStores.Data
 
         public DbSet<EsepteStores.Models.Card> Card { get; set; }
 
+        //public DbSet<EsepteStores.Models.Product> Product { get; set; }
+
+        //public DbSet<EsepteStores.Models.OrderPoruduct> OrderPoruduct { get; set; }
+
+        //public DbSet<EsepteStores.Models.Order> Order { get; set; }
+
+        //public DbSet<EsepteStores.Models.ProductImage> ProductImages { get; set; }
+
+        //public DbSet<EsepteStores.Models.OrderPoruduct> OrderPoruduct { get; set; }
+
+        //public DbSet<EsepteStores.Models.Order> Order { get; set; }
+
+        public DbSet<EsepteStores.Models.ServiceType> ServiceType { get; set; }
+
 
     }
 }
