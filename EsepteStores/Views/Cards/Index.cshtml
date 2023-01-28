@@ -1,0 +1,131 @@
+﻿@model IEnumerable<EsepteStores.Models.Card>
+
+@{
+    ViewData["Title"] = "Список";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<p>
+    <a asp-action="Create">Добавить запись</a>
+</p>
+
+<div class="d-none d-md-block">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Passport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPayed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegisterDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Passport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPayed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisterDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+</div>
+
+<div class="d-lg-none d-sm-block">
+    <table class="table">
+@*    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Passport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPayed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegisterDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>*@
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <b>@Html.DisplayNameFor(model => model.FullName)</b>
+                :
+                    @Html.DisplayFor(modelItem => item.FullName) <br>
+                <b>@Html.DisplayNameFor(model => model.BirthDate)</b>
+                :
+                    @Html.DisplayFor(modelItem => item.BirthDate) <br>
+                <b>@Html.DisplayNameFor(model => model.Passport)</b>
+                :
+                    @Html.DisplayFor(modelItem => item.Passport) <br>
+                <b>@Html.DisplayNameFor(model => model.Phone)</b>
+                :
+                    @Html.DisplayFor(modelItem => item.Phone)<br>
+                <b>@Html.DisplayNameFor(model => model.IsPayed)</b>
+                :
+                    @Html.DisplayFor(modelItem => item.IsPayed)<br>
+                <b>@Html.DisplayNameFor(model => model.RegisterDate)</b>
+                :
+                    @Html.DisplayFor(modelItem => item.RegisterDate)<br>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+</div>

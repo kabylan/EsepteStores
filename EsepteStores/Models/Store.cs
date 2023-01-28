@@ -9,7 +9,7 @@ namespace EsepteStores.Models
     public class Store
     {
         public int Id { get; set; }
-        [Display(Name = "Название магазина")]
+        [Display(Name = "Название организации")]
         public string Name { get; set; }
         [Display(Name = "Пароль")]
         public string Password { get; set; }

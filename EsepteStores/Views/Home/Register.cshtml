@@ -1,8 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Регистрация";
 }
 
-<h3 class="text-center">Регистрация</h3>
+<h3 class="text-center">@ViewData["Title"]</h3>
 <hr />
 
 <div class="d-flex justify-content-center">
@@ -10,7 +10,7 @@
     <form asp-action="Register" method="post" class="col-8">
 
         <div class="form-group">
-            <label>Название магазина</label>
+            <label>Наименование организации</label>
             <input type="text" name="Name" class="form-control" />
         </div>
         <div class="form-group">
@@ -18,13 +18,13 @@
             <input type="password" name="Password" class="form-control" />
         </div>
         <div class="form-group">
-            <label class="control-label">Контактный номер 1</label>
+            <label class="control-label">Контактный номер</label>
             <input name="PhoneFirst" class="form-control" />
         </div>
-        <div class="form-group">
+@*        <div class="form-group">
             <label class="control-label">Контактный номер 2</label>
             <input name="PhoneSecond" class="form-control" />
-        </div>
+        </div>*@
         @*<div class="form-group">
             <label class="control-label">Логотип</label>
             <input type="file" name="LogoFile" accept="image/*" />

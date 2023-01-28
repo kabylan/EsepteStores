@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "";
 }
 
 <h3 class="text-center">Вход</h3>
@@ -9,7 +9,7 @@
     <form asp-action="Login" method="post" class="col-8">
 
         <div class="form-group">
-            <label>Название магазина</label>
+            <label>Название организации</label>
             <input type="text" name="Name" class="form-control" />
         </div>
         <div class="form-group">
@@ -29,10 +29,11 @@
 <br />
 <br />
 <br />
-
+@*
 <h5>EsepteStores - это ваш интернет магазин!</h5>
 <ul>
     <li>Логотип, название <b>интернет магазина</b></li>
     <li>Цена, способ доставки, описание <b>товара</b></li>
     <li>Имя, номер телефона, адрес <b>заказчика</b></li>
 </ul>
+*@

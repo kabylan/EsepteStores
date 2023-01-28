@@ -72,18 +72,18 @@ namespace EsepteStores.Controllers
             if (ModelState.IsValid)
             {
 
-                string path = "images/" + "store_" + store.Id + "/logo/" + LogoFile.FileName;
+                //string path = "images/" + "store_" + store.Id + "/logo/" + LogoFile.FileName;
 
 
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + "/" + path, FileMode.Create))
-                {
+                //using (var fileStream = new FileStream(_appEnvironment.WebRootPath + "/" + path, FileMode.Create))
+                //{
 
 
-                    await LogoFile.CopyToAsync(fileStream);
-                }
+                //    await LogoFile.CopyToAsync(fileStream);
+                //}
 
 
-                store.LogoFilePath = path;
+                //store.LogoFilePath = path;
 
 
                 _context.Add(store);
@@ -125,18 +125,18 @@ namespace EsepteStores.Controllers
                 try
                 {
 
-                    string path = "images/" + "store_" + store.Id + "/logo/" + LogoFile.FileName;
+                    //string path = "images/" + "store_" + store.Id + "/logo/" + LogoFile.FileName;
 
 
-                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + "/" + path, FileMode.Create))
-                    {
+                    //using (var fileStream = new FileStream(_appEnvironment.WebRootPath + "/" + path, FileMode.Create))
+                    //{
                     
                         
-                        await LogoFile.CopyToAsync(fileStream);
-                    }
+                    //    await LogoFile.CopyToAsync(fileStream);
+                    //}
 
 
-                    store.LogoFilePath = path;
+                    //store.LogoFilePath = path;
 
 
                     _context.Update(store);

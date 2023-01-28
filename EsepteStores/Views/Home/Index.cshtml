@@ -1,23 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
 <div class="text-center">
     <br />
     <br />
     <ul class="text-left " style="list-style-type: none">
+        @*<li class="p-2">
+            <a class="btn-link" asp-controller="Stores" asp-action="Index"><i class="fas fa-store text-primary px-2"></i>Ваша организа</a>
+        </li>*@
         <li class="p-2">
-            <a class="btn-link" asp-controller="Stores" asp-action="Index"><i class="fas fa-store text-primary px-2"></i>Мой магазин</a>
+            <a class="btn-link" asp-controller="Cards" asp-action="Index"><i class="text-primary px-2"></i>Список</a>
         </li>
-        <li class="p-2">
-            <a class="btn-link" asp-controller="Products" asp-action="Index"><i class="fas fa-shopping-cart text-primary px-2"></i>Мои товары</a>
-        </li>
-        <li class="p-2">
+        @*<li class="p-2">
             <a class="btn-link" asp-controller="Orders" asp-action="Index"><i class="fas fa-users text-primary px-2"></i>Заказы клиентов</a>
-        </li>
+        </li>*@
     </ul>
     @*<h1 class="display-4">Добро пожаловать!</h1>*@
-    <br />
+@*    <br />
     <br />    
     <br />
     <br />
@@ -27,6 +27,6 @@
         <a href="/Products/@ViewBag.Store.Id">http://esepte.com/Products/@ViewBag.Store.Id</a>
     </code>
     <br />
-    <br />
+    <br />*@
     @*<a href="/Products/@ViewBag.Store.Id">Посмотреть как клиент</a>*@
 </div>

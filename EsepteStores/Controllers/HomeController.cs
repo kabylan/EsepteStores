@@ -58,7 +58,7 @@ namespace EsepteStores.Controllers
                 HttpContext.Session.SetInt32("StoreId", store.Id);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Cards");
         }
 
         [HttpGet]
@@ -68,7 +68,7 @@ namespace EsepteStores.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(string Name, string Password, string PhoneFirst, string PhoneSecond)
+        public IActionResult Register(string Name, string Password, string PhoneFirst)
         {
             HttpContext.Session.SetString("StoreName", Name);
 
@@ -76,8 +76,7 @@ namespace EsepteStores.Controllers
             {
                 Name = Name,
                 Password = Password,
-                PhoneFirst = PhoneFirst,
-                PhoneSecond = PhoneSecond
+                PhoneFirst = PhoneFirst
             };
 
             context.Store.Add(store);
@@ -87,9 +86,9 @@ namespace EsepteStores.Controllers
             HttpContext.Session.SetInt32("StoreId", store.Id);
 
 
-            Directory.CreateDirectory(_appEnvironment.WebRootPath + "/images/" + "store_" + store.Id);
-            Directory.CreateDirectory(_appEnvironment.WebRootPath + "/images/" + "store_" + store.Id + "/logo");
-            Directory.CreateDirectory(_appEnvironment.WebRootPath + "/images/" + "store_" + store.Id + "/products");
+            //Directory.CreateDirectory(_appEnvironment.WebRootPath + "/images/" + "store_" + store.Id);
+            //Directory.CreateDirectory(_appEnvironment.WebRootPath + "/images/" + "store_" + store.Id + "/logo");
+            //Directory.CreateDirectory(_appEnvironment.WebRootPath + "/images/" + "store_" + store.Id + "/products");
 
 
             return RedirectToAction("Index");
